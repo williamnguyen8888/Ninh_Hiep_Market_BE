@@ -10,6 +10,6 @@ public interface IUserService {
     List<UserDto> findAll();
     Optional<UserEntity> findById(int id);
     UserEntity save(UserEntity user);
-    UserEntity deleteUserEntityById(int id);
     Boolean existsByUserName(String user_name);
+    int deleteUserEntityById(int id);
 }

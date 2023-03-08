@@ -22,6 +22,9 @@ public class RoleEntity {
     private int id;
 
     @NotNull
+    private int code;
+
+    @NotNull
     private String name;
 
     private String description;

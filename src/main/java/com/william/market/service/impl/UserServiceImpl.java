@@ -4,6 +4,7 @@ import com.william.market.dto.UserDto;
 import com.william.market.entity.UserEntity;
 import com.william.market.repository.IUserRepository;
 import com.william.market.service.IUserService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements IUserService {
     @Autowired
     IUserRepository userRepository;
@@ -38,7 +40,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserEntity deleteUserEntityById(int id) {
+    public int deleteUserEntityById(int id) {
         return userRepository.deleteUserEntityById(id);
     }
 
