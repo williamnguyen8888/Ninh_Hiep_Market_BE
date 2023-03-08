@@ -1,5 +1,8 @@
 package com.william.market.dto;
+import com.william.market.entity.UsersRolesEntity;
 import lombok.*;
+
+import java.util.Collection;
 import java.util.Date;
 
 
@@ -20,6 +23,8 @@ public class UserDto {
     private Long phone;
 
     private String email;
+
+    private Collection<UsersRolesEntity> usersRolesEntities;
 
     private int status;
 

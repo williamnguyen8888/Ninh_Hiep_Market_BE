@@ -1,6 +1,7 @@
 package com.william.market.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -25,9 +26,14 @@ public class RoleEntity {
 
     private String description;
 
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private Collection<UserEntity> users;
+//    @ManyToMany(mappedBy = "roles")
+//    @JsonIgnore
+//    private Collection<UserEntity> users;
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "UsersRolesEntity-RoleEntity")
+    private  Collection<UsersRolesEntity> usersRolesEntities;
+
 
     private int status;
 

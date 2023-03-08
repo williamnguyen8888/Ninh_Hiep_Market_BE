@@ -1,6 +1,7 @@
 package com.william.market.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -41,9 +42,13 @@ public class UserEntity {
     @NotNull
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<RoleEntity> roles;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+//    private Collection<RoleEntity> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "UsersRolesEntity-UserEntity")
+    private  Collection<UsersRolesEntity> usersRolesEntities;
 
     private int status;
 
