@@ -1,11 +1,15 @@
 package com.william.market.service.impl;
 
+import com.william.market.dto.UserDto;
 import com.william.market.entity.UserEntity;
 import com.william.market.repository.IUserRepository;
 import com.william.market.service.IUserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +18,12 @@ public class UserServiceImpl implements IUserService {
     IUserRepository userRepository;
 
     @Override
-    public Iterable<UserEntity> findAll() {
-        return userRepository.findAll();
+    public List<UserDto> findAll() {
+        // Tạo mapper object
+        ModelMapper mapper = new ModelMapper();
+        List<UserDto> userDtoList = Arrays.asList(mapper.map(userRepository.findAll(), UserDto[].class));
+
+        return userDtoList;
     }
 
     @Override

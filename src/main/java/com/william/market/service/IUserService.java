@@ -1,11 +1,13 @@
 package com.william.market.service;
 
+import com.william.market.dto.UserDto;
 import com.william.market.entity.UserEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    Iterable<UserEntity> findAll();
+    List<UserDto> findAll();
     Optional<UserEntity> findById(int id);
     UserEntity save(UserEntity user);
     UserEntity deleteUserEntityById(int id);

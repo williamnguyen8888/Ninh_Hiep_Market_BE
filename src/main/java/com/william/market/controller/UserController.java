@@ -31,7 +31,7 @@ public class UserController {
         if (userService.existsByUserName(userEntity.getUserName())){
             return new ResponseEntity("User already exists", HttpStatus.CONFLICT);
         }
-        
+
         return new ResponseEntity(userService.save(userEntity), HttpStatus.OK);
     }
 }
