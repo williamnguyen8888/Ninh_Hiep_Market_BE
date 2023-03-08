@@ -3,12 +3,14 @@ package com.william.market.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Data
@@ -24,35 +26,32 @@ public class UserEntity {
 
     @NotNull
     @NotBlank
-    private String user_name;
+    private String userName;
     
     @NotNull
-    @NotBlank
     private String password;
     
-    private String full_name;
+    private String fullName;
     
-    private Date dob;
+    private String dob;
 
     @NotNull
-    @NotBlank
     private Long phone;
 
     @NotNull
-    @NotBlank
     private String email;
-    
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<RoleEntity> roles;
+
     private int status;
 
-    @NotNull
-    @NotBlank
-    private Date created_time;
+    private Date createdTime  = new Date();
 
-    @NotNull
-    @NotBlank
-    private String created_by;
+
+    private String createdBy;
     
-    @NotNull
-    @NotBlank
-    private String updated_by;
+
+    private String updatedBy;
 }

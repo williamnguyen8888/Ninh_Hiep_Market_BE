@@ -8,5 +8,6 @@ public interface IUserService {
     Iterable<UserEntity> findAll();
     Optional<UserEntity> findById(int id);
     UserEntity save(UserEntity user);
-    int deleteUserEntityById(int id);
+    UserEntity deleteUserEntityById(int id);
+    Boolean existsByUserName(String user_name);
 }

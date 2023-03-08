@@ -25,11 +25,17 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserEntity save(UserEntity user) {
+
         return userRepository.save(user);
     }
 
     @Override
-    public int deleteUserEntityById(int id) {
-        return deleteUserEntityById(id);
+    public UserEntity deleteUserEntityById(int id) {
+        return userRepository.deleteUserEntityById(id);
+    }
+
+    @Override
+    public Boolean existsByUserName(String user_name) {
+        return userRepository.existsByUserName(user_name);
     }
 }
